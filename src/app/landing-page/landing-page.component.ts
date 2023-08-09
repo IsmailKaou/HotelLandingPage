@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { SalesforceService } from '../_services/salesforce.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,85 +14,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
-  showBedroom = true;
-  showEventSpace = false;
-  showRestaurant = false;
-  isOpen = false;
-
-  imagesList: string[] = [];
-
-  constructor() {
-    this.fillImageslist();
+  isScrolled = false;
+  scrollToTop() {
+    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  fillImageslist() {
-    if (this.showBedroom) {
-      this.imagesList = [
-        '../../assets/places/bedroom1.png',
-        '../../assets/places/bedroom2.png',
-        '../../assets/places/bedroom3.png',
-      ];
-    } else if (this.showEventSpace) {
-      this.imagesList = [
-        '../../assets/places/event1.png',
-        '../../assets/places/event2.png',
-        '../../assets/places/event3.png',
-      ];
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    if (window.scrollY > 100) {
+      this.isScrolled = true;
     } else {
-      this.imagesList = [
-        '../../assets/places/rest1.png',
-        '../../assets/places/rest2.png',
-        '../../assets/places/rest3.png',
-      ];
-    }
-  }
-
-  toggleMenu() {
-    this.isOpen = !this.isOpen;
-  }
-  showBedroomImages() {
-    this.showBedroom = true;
-    this.showEventSpace = false;
-    this.showRestaurant = false;
-    this.fillImageslist();
-  }
-  showEventImages() {
-    this.showBedroom = false;
-    this.showEventSpace = true;
-    this.showRestaurant = false;
-    this.fillImageslist();
-  }
-  showRestaurantImages() {
-    this.showBedroom = false;
-    this.showEventSpace = false;
-    this.showRestaurant = true;
-    this.fillImageslist();
-  }
-
-  handleRight() {
-    if (this.showBedroom) {
-      this.showEventSpace = true;
-      this.showBedroom = false;
-      this.fillImageslist();
-    } else if (this.showEventSpace) {
-      this.showRestaurant = true;
-      this.showEventSpace = false;
-      this.fillImageslist();
-    } else {
-      return;
-    }
-  }
-  handleLeft() {
-    if (this.showRestaurant) {
-      this.showEventSpace = true;
-      this.showRestaurant = false;
-      this.fillImageslist();
-    } else if (this.showEventSpace) {
-      this.showBedroom = true;
-      this.showEventSpace = false;
-      this.fillImageslist();
-    } else {
-      return;
+      this.isScrolled = false;
     }
   }
 }

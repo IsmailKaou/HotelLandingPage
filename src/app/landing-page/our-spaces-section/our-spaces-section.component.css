@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.OurSpaces {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.OurSpaces .content {
+  display: flex;
+  padding: 24px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.OurSpaces .content .title .titleC {
+  color: #583101;
+  font-family: Playfair Display;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.OurSpaces .content .text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.OurSpaces .content .text .header {
+  color: #121619;
+  font-family: Playfair Display;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.OurSpaces .content .text .paragraph {
+  color: #121619;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.OurSpaces .slideshow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.slideshow .placesName {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+}
+.slideshow .placesImage {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.slideshow .move {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.slideshow .placesName .name {
+  color: #121619;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
