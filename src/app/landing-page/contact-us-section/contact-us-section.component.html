@@ -36,7 +36,24 @@
       [formGroup]="contactForm"
       class="w-[100vw] max-w-xs sm:max-w-lg flex flex-col items-center justify-center gap-5"
       (ngSubmit)="onSubmit(contactForm.value)"
+      action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+      method="POST"
     >
+      <input type="hidden" name="oid" value="00D8e000000SoQO" />
+      <input
+        type="hidden"
+        name="retURL"
+        value="https://64d38e0ddebf9d605aab5e06--gregarious-dodol-6478ef.netlify.app/confirmation"
+      />
+
+      <!--  ----------------------------------------------------------------------  -->
+      <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+      <!--  these lines if you wish to test in debug mode.                          -->
+      <!--  <input type="hidden" name="debug" value=1>                              -->
+      <!--  <input type="hidden" name="debugEmail"                                  -->
+      <!--  value="ismailkaou12@gmail.com">                                         -->
+      <!--  ----------------------------------------------------------------------  -->
+
       <!-- Salutation -->
       <div
         class="border-b text-[#583101] border-[#583101] py-2 flex items-center gap-3 w-full"
@@ -56,14 +73,15 @@
           />
         </svg>
 
-        <select
-          formControlName="salutation"
-          class="px-2 w-full leading-tight text-md text-[#583101] bg-transparent appearance-none focus:outline-none"
-        >
-          <option selected>Salutation</option>
+        <select id="salutation" name="salutation">
+          <option value="">--None--</option>
           <option value="Mr.">Mr.</option>
-          <option value="Mdm.">Mdm.</option>
-        </select>
+          <option value="Ms.">Ms.</option>
+          <option value="Mrs.">Mrs.</option>
+          <option value="Dr.">Dr.</option>
+          <option value="Prof.">Prof.</option>
+          <option value="Mx.">Mx.</option></select
+        ><br />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -101,12 +119,22 @@
           </svg>
 
           <input
+            id="first_name"
+            name="first_name"
+            type="text"
             formControlName="firstName"
             class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="text"
             placeholder="First Name"
             aria-label="First Name"
-          />
+          /><br />
+          <!-- <input
+            formControlName="firstName"
+            class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="text"
+            placeholder="First Name"
+            aria-label="First Name"
+          /> -->
         </div>
         <div
           class="border-b text-[#583101] border-[#583101] py-2 flex items-center gap-3 w-[50%]"
@@ -125,16 +153,43 @@
               d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
             />
           </svg>
-
           <input
+            id="last_name"
+            maxlength="80"
+            name="last_name"
             formControlName="lastName"
             class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="text"
             placeholder="Last Name"
             aria-label="Last Name"
           />
+          <!-- <input
+            formControlName="lastName"
+            class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="text"
+            placeholder="Last Name"
+            aria-label="Last Name"
+          /> -->
         </div>
       </div>
+
+      <!-- <label for="first_name">First Name</label
+      ><input
+        id="first_name"
+        maxlength="40"
+        name="first_name"
+        size="20"
+        type="text"
+      /><br /> -->
+
+      <!-- <label for="last_name">Last Name</label
+      ><input
+        id="last_name"
+        maxlength="80"
+        name="last_name"
+        size="20"
+        type="text"
+      /><br /> -->
       <!-- Email and phone Number -->
       <div class="flex items-center justify-between gap-10">
         <!-- Email -->
@@ -155,14 +210,25 @@
               d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
             />
           </svg>
-
           <input
+            id="email"
+            maxlength="80"
+            name="email"
+            size="20"
+            type="text"
             class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="email"
             placeholder="Email"
             aria-label="Email"
             formControlName="email"
           />
+          <!-- <input
+            class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="email"
+            placeholder="Email"
+            aria-label="Email"
+            formControlName="email"
+          /> -->
         </div>
         <!-- Phone Number -->
         <div
@@ -184,14 +250,44 @@
           </svg>
 
           <input
+            id="phone"
+            maxlength="40"
+            name="phone"
+            size="20"
+            type="text"
             class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="phone"
             placeholder="Phone Number"
             aria-label="Phone"
             formControlName="phone"
           />
+          <!-- <input
+            class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="phone"
+            placeholder="Phone Number"
+            aria-label="Phone"
+            formControlName="phone"
+          /> -->
         </div>
       </div>
+      <!-- <label for="email">Email</label
+      ><input
+        id="email"
+        maxlength="80"
+        name="email"
+        size="20"
+        type="text"
+      /><br />
+
+      <label for="phone">Phone</label
+      ><input
+        id="phone"
+        maxlength="40"
+        name="phone"
+        size="20"
+        type="text"
+      /><br /> -->
+
       <!-- Company Name -->
       <div
         class="border-b text-[#583101] border-[#583101] py-2 flex items-center gap-3 w-full"
@@ -210,15 +306,40 @@
             d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"
           />
         </svg>
-
         <input
+          id="company"
+          maxlength="40"
+          name="company"
+          size="20"
+          type="text"
+          class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
+          placeholder="Company Name"
+          aria-label="Company Name"
+          formControlName="Company"
+        />
+        <!-- <input
           class="appearance-none placeholder-[#583101] bg-transparent border-none w-full text-[#583101] mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="text"
           placeholder="Company Name"
           aria-label="Company Name"
           formControlName="Company"
-        />
+        /> -->
       </div>
+      <!-- <label for="company">Company</label
+      ><input
+        id="company"
+        maxlength="40"
+        name="company"
+        size="20"
+        type="text"
+      /><br /> -->
+
+      <!-- Type:<select id="00N8e000000lIRT" name="00N8e000000lIRT" title="Type">
+        <option value="">--None--</option>
+        <option value="B2B">B2B</option>
+        <option value="B2C">B2C</option></select
+      ><br /> -->
+
       <!-- Lead Type -->
       <div
         class="border-b text-[#583101] border-[#583101] py-2 flex items-center gap-3 w-full"
@@ -239,13 +360,24 @@
         </svg>
 
         <select
+          id="00N8e000000lIRT"
+          name="00N8e000000lIRT"
+          title="Type"
+          class="px-2 w-full leading-tight text-md text-[#583101] bg-transparent appearance-none focus:outline-none"
+          formControlName="Type__c"
+        >
+          <option value="">--None--</option>
+          <option value="B2B">Business</option>
+          <option value="B2C">Personne</option>
+        </select>
+        <!-- <select
           class="px-2 w-full leading-tight text-md text-[#583101] bg-transparent appearance-none focus:outline-none"
           formControlName="Type__c"
         >
           <option selected>Type</option>
           <option value="B2C">Personne</option>
           <option value="B2B">Business</option>
-        </select>
+        </select> -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -261,9 +393,12 @@
           />
         </svg>
       </div>
-      <button class="ContactUsFormButton w-full max-w-lg mt-2 text-center">
-        Submit
-      </button>
+
+      <input
+        type="submit"
+        name="submit"
+        class="ContactUsFormButton w-full max-w-lg mt-2 text-center"
+      />
     </form>
   </div>
 </section>
