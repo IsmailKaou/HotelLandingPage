@@ -35,7 +35,6 @@
     <form
       [formGroup]="contactForm"
       class="w-[100vw] max-w-xs sm:max-w-lg flex flex-col items-center justify-center gap-5"
-      (ngSubmit)="onSubmit(contactForm.value)"
       action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
       method="POST"
     >
